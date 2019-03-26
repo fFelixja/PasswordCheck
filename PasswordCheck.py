@@ -40,9 +40,9 @@ def isPasswordLeaked(hashedUserPassword, requestResult):
     dataArray = text.split('\n')
     # Search for a match.
     for data in dataArray:
-        hashedPassword , occurance = data.split(':')
+        hashedPassword , occurence = data.split(':')
         if hashedPassword == hashedUserPassword:
-            return True, occurance
+            return True, occurence
     # No match.
     return False, 0
 
@@ -78,13 +78,13 @@ def main():
             signalHandler.exit_gracefully(signal.SIGINT,None)  
         
         # Check if password is leaked.
-        isLeaked, times = isPasswordLeaked(remainingOfHash,requestResult)
+        isLeaked, occurence = isPasswordLeaked(remainingOfHash,requestResult)
 
         # Print the result to console.
         if isLeaked:
             print(password, 'was found!')
             print('Hash: {}'.format(hashedPassword))
-            print("Occurences: {}".format(times))
+            print("Occurences: {}".format(occurence))
         else:
             print('\nPassword was not found.')
 
